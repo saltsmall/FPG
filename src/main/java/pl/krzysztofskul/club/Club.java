@@ -54,5 +54,11 @@ public class Club {
 	}
 	
 	/** m. */
-	
+	public void addPerson(Person person) {
+		this.getPersons().add(person);
+		System.out.println("new person to the club added: "+person.getNameNick());
+	}
+	public void removePerson(Person person) {
+		this.getPersons().remove(person);
+	}
 }
