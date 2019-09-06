@@ -1,5 +1,7 @@
 package pl.krzysztofskul.person;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,14 @@ public class PersonService {
 		personRepository.save(person);
 	}
 	/** m. CRUD read */
+	public List<Person> loadAll() {
+		return personRepository.findAll();
+	}
+	
+	public Person loadById(Long id) {
+		return personRepository.findById(id).get();
+	}
+	
 	/** m. CRUD update */
 	/** m. CRUD delete */
 	

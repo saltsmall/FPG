@@ -1,0 +1,29 @@
+2019-09-06
+	+ add persons to clubs
+
+
+- classes/entities
+	+ person
+		- player
+		- coach
+	+ club
+	- player parameters
+	- club info
+	- game
+
+- relations
+	+ player/club
+
++ home page
+	+ footer
+	+ header
+	+ startDB
+		+ players
+		+ clubs
+		+ add persons to the club
+	
+- views
+	- menu
+	- home page
+	- player info
+	- club info
