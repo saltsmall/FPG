@@ -26,6 +26,9 @@ public class Person {
 	
 	private LocalDate dateOfBirth;
 	
+	private int goalkeeping;
+	private int shooting;
+	
 	@ManyToOne
 	private Club club;
 	
@@ -70,6 +73,22 @@ public class Person {
 
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public int getGoalkeeping() {
+		return goalkeeping;
+	}
+
+	public void setGoalkeeping(int goalkeeping) {
+		this.goalkeeping = goalkeeping;
+	}
+
+	public int getShooting() {
+		return shooting;
+	}
+
+	public void setShooting(int shooting) {
+		this.shooting = shooting;
 	}
 
 	public Club getClub() {

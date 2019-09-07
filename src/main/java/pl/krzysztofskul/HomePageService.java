@@ -1,6 +1,7 @@
 package pl.krzysztofskul;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.transaction.Transactional;
 
@@ -35,9 +36,15 @@ public class HomePageService {
 	
 		for (int i=1; i<=44; i++) {
 			Person person = new Person();
+			/* main info */
 			person.setNameFirst("Firstname00"+i);
-			person.setNameLast("lastname00"+i);
+			person.setNameLast("Lastname00"+i);
 			person.setNameNick(person.getNameFirst()+" "+person.getNameLast());
+			/* player parameters */
+			Random random = new Random();
+			person.setGoalkeeping(random.nextInt(998)+1);
+			person.setShooting(random.nextInt(998)+1);
+			/* save to db */
 			personService.save(person);
 		}
 		

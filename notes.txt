@@ -1,13 +1,10 @@
-2019-09-06
-	+ add persons to clubs
-
-
 - classes/entities
 	+ person
+		+ parameters
 		- player
 		- coach
 	+ club
-	- player parameters
+	+ player main parameters
 	- club info
 	- game
 
