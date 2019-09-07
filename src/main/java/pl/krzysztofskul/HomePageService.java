@@ -1,6 +1,7 @@
 package pl.krzysztofskul;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.transaction.Transactional;
 
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import pl.krzysztofskul.club.Club;
 import pl.krzysztofskul.club.ClubService;
+import pl.krzysztofskul.game.Game;
+import pl.krzysztofskul.game.GameService;
 import pl.krzysztofskul.person.Person;
 import pl.krzysztofskul.person.PersonService;
 
@@ -19,15 +22,18 @@ public class HomePageService {
 	/** p. */
 	private PersonService personService;
 	private ClubService clubService;
+	private GameService gameService;
 	
 	/** c. */
 	@Autowired
 	public HomePageService(
 			PersonService personService,
-			ClubService clubService
+			ClubService clubService,
+			GameService gameService
 			) {
 		this.personService = personService;
 		this.clubService = clubService;
+		this.gameService = gameService;
 	}
 	
 	/** m. */
@@ -35,9 +41,15 @@ public class HomePageService {
 	
 		for (int i=1; i<=44; i++) {
 			Person person = new Person();
+			/* main info */
 			person.setNameFirst("Firstname00"+i);
-			person.setNameLast("lastname00"+i);
+			person.setNameLast("Lastname00"+i);
 			person.setNameNick(person.getNameFirst()+" "+person.getNameLast());
+			/* player parameters */
+			Random random = new Random();
+			person.setGoalkeeping(random.nextInt(998)+1);
+			person.setShooting(random.nextInt(998)+1);
+			/* save to db */
 			personService.save(person);
 		}
 		
@@ -76,6 +88,25 @@ public class HomePageService {
 			}
 		}
 		
+	}
+	
+	public void createGames() {
+		Game game;
+		/* 1 */
+		game = new Game(clubService.loadById(Long.valueOf("1")), clubService.loadById(Long.valueOf("2")));
+		game.goalForGuest();
+		game.goalForHost();
+		game.goalForHost();
+		gameService.save(game);
+		/* 2 */
+		game = new Game(clubService.loadById(Long.valueOf("3")), clubService.loadById(Long.valueOf("4")));
+		game.goalForGuest();
+		game.goalForGuest();
+		game.goalForGuest();
+		game.goalForHost();
+		game.goalForHost();
+		game.goalForHost();
+		gameService.save(game);
 	}
 	
 }

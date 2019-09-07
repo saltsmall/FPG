@@ -25,11 +25,14 @@ public class ClubService {
 	/** m. CRUD create */
 	public void save(Club club) {
 		clubRepository.save(club);
-		System.out.println("club saved"+club.getName());
 	}
 	/** m. CRUD read */
 	public List<Club> loadAll() {
 		return clubRepository.findAll();
+	}
+	
+	public Club loadById(Long id) {
+		return clubRepository.findById(id).get();
 	}
 	
 	/** m. CRUD update */

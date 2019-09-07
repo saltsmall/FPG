@@ -29,6 +29,7 @@ public class HomePageController {
 		homePageService.createPersons();
 		homePageService.createClubs();
 		homePageService.addPersonsToClub();
+		homePageService.createGames();
 		return "index";
 	}
 	
