@@ -6,7 +6,7 @@
 	+ club
 	+ player main parameters
 	- club info
-	- game
+	+ game
 
 - relations
 	+ player/club
@@ -24,3 +24,6 @@
 	- home page
 	- player info
 	- club info
+	
+- PL signs
+	- footer

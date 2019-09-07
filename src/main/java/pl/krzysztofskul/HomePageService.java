@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import pl.krzysztofskul.club.Club;
 import pl.krzysztofskul.club.ClubService;
+import pl.krzysztofskul.game.Game;
+import pl.krzysztofskul.game.GameService;
 import pl.krzysztofskul.person.Person;
 import pl.krzysztofskul.person.PersonService;
 
@@ -20,15 +22,18 @@ public class HomePageService {
 	/** p. */
 	private PersonService personService;
 	private ClubService clubService;
+	private GameService gameService;
 	
 	/** c. */
 	@Autowired
 	public HomePageService(
 			PersonService personService,
-			ClubService clubService
+			ClubService clubService,
+			GameService gameService
 			) {
 		this.personService = personService;
 		this.clubService = clubService;
+		this.gameService = gameService;
 	}
 	
 	/** m. */
@@ -83,6 +88,25 @@ public class HomePageService {
 			}
 		}
 		
+	}
+	
+	public void createGames() {
+		Game game;
+		/* 1 */
+		game = new Game(clubService.loadById(Long.valueOf("1")), clubService.loadById(Long.valueOf("2")));
+		game.goalForGuest();
+		game.goalForHost();
+		game.goalForHost();
+		gameService.save(game);
+		/* 2 */
+		game = new Game(clubService.loadById(Long.valueOf("3")), clubService.loadById(Long.valueOf("4")));
+		game.goalForGuest();
+		game.goalForGuest();
+		game.goalForGuest();
+		game.goalForHost();
+		game.goalForHost();
+		game.goalForHost();
+		gameService.save(game);
 	}
 	
 }
