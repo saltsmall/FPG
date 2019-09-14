@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import pl.krzysztofskul.club.Club;
@@ -34,10 +36,8 @@ public class GameController {
 	
 	/** m. */
 	@GetMapping("/all")
-	public String gamesAll(Model model) {
-		
+	public String gamesAll(Model model) {	
 		model.addAttribute("gamesAll", gameService.loadAll());
-		
 		return "games/all";
 	}
 	
@@ -60,11 +60,18 @@ public class GameController {
 		Club clubGuest = clubService.loadByIdWithPersons(idGuest);
 		
 		Game game = new Game(clubHost, clubGuest);
-		gameService.save(game);
 		
 		model.addAttribute("game", game);
 	
 		return "games/play";
+	}
+	
+	@PostMapping("/play/save")
+	public String playSave(
+			@ModelAttribute("game") Game game
+	) {
+		gameService.save(game);
+		return "redirect:/games/all";
 	}
 	
 }
