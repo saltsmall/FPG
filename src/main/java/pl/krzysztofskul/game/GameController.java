@@ -1,5 +1,7 @@
 package pl.krzysztofskul.game;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +39,15 @@ public class GameController {
 		model.addAttribute("gamesAll", gameService.loadAll());
 		
 		return "games/all";
+	}
+	
+	@GetMapping("/randomplay")
+	public String randomplay() {
+		int clubsNum = clubService.loadAll().size();
+		Random random = new Random();
+		Long idHost = Integer.toUnsignedLong(random.nextInt(clubsNum)+1);
+		Long idGuest = Integer.toUnsignedLong(random.nextInt(clubsNum)+1);
+		return "redirect:/games/play/"+idHost+"/"+idGuest;
 	}
 	
 	@GetMapping("/play/{idHost}/{idGuest}") 
