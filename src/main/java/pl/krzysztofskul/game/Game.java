@@ -28,6 +28,16 @@ public class Game {
 	private int goalsGuest;
 	
 	/** c. */
+	public Game() {
+		
+	}
+	
+	public Game(Club host, Club guest) {
+		this.host = host;
+		this.guest = guest;
+		this.goalsHost = 0;
+		this.goalsGuest = 0;
+	}
 	
 	/** g and s */
 	
@@ -40,12 +50,6 @@ public class Game {
 	
 	public Club getHost() {
 		return host;
-	}
-	public Game(Club host, Club guest) {
-		this.host = host;
-		this.guest = guest;
-		this.goalsHost = 0;
-		this.goalsGuest = 0;
 	}
 	
 	public void setHost(Club host) {
