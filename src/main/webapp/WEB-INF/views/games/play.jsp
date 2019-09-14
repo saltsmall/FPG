@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,14 +11,21 @@
 		document.addEventListener("DOMContentLoaded", function() {
 			var goalsHost = document.getElementById("goalsHost");
 			var goalsGuest = document.getElementById("goalsGuest");
+			var formGameGoalsHost = document.getElementById("formGameGoalsHost");
+			var formGameGoalsGuest = document.getElementById("formGameGoalsGuest");
+			
 			var randomScore = document.getElementById("randomScore");
 			var finishGame = document.getElementById("finishGame");
 			
 			randomScore.addEventListener("click", function() {
 				goalsHost.style.color = "blue";
-				goalsHost.innerText = Math.floor(Math.random()*10);
+				var goalsHostNo = Math.floor(Math.random()*10)
+				goalsHost.innerText = goalsHostNo;
 				goalsGuest.style.color = "blue";
-				goalsGuest.innerText = Math.floor(Math.random()*10);
+				var goalsGuestNo = Math.floor(Math.random()*10)
+				goalsGuest.innerText = goalsGuestNo;
+ 				formGameGoalsHost.value = goalsHostNo;
+				formGameGoalsGuest.value = goalsGuestNo;
 				randomScore.disabled = true;
 				finishGame.disabled = false;
 			});
@@ -70,7 +78,14 @@
 					<td colspan="5" class="text-right">
 						<button disabled>kick penalty</button>
 						<button id="randomScore">random score</button>
-						<button id="finishGame" disabled>finish game</button>
+						<form:form method="post" action="/games/play/save" modelAttribute="game">
+							<form:hidden id="formGameId" path="id"/>
+							<form:hidden id="formGameHost" path="host.id"/>
+							<form:hidden id="formGameGuest" path="guest.id"/>
+							<form:hidden id="formGameGoalsHost" path="goalsHost"/>
+							<form:hidden id="formGameGoalsGuest" path="goalsGuest"/>
+							<button id="finishGame" type="submit" disabled>finish game</button>
+						</form:form>
 					</td>
 				</tr>
 			</tfoot>
