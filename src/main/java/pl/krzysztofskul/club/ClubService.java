@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,12 @@ public class ClubService {
 	
 	public Club loadById(Long id) {
 		return clubRepository.findById(id).get();
+	}
+	
+	public Club loadByIdWithPersons(Long id) {
+		Club club = clubRepository.findById(id).get();
+		Hibernate.initialize(club.getPersons());
+		return club;
 	}
 	
 	/** m. CRUD update */
