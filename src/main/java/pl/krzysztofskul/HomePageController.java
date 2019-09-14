@@ -19,12 +19,12 @@ public class HomePageController {
 	
 	/** m. */
 	
-	@GetMapping("/")
+	@GetMapping({"/", "/home"})
 	public String homePage() {
 		return "index";
 	}
 	
-	@GetMapping("/start")
+	@GetMapping("/startDB")
 	public String start() {
 		homePageService.createPersons();
 		homePageService.createClubs();
