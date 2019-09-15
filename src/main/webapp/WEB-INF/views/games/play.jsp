@@ -14,6 +14,7 @@
 			var formGameGoalsHost = document.getElementById("formGameGoalsHost");
 			var formGameGoalsGuest = document.getElementById("formGameGoalsGuest");
 			
+			var kickPenalty = document.getElementById("kickPenalty");
 			var randomScore = document.getElementById("randomScore");
 			var finishGame = document.getElementById("finishGame");
 			
@@ -30,6 +31,43 @@
 				finishGame.disabled = false;
 			});
 			
+			var round = 1;
+			var goalsHostNo = 0;
+			var goalsGuestNo = 0;
+			kickPenalty.addEventListener("click", function() {
+				
+				if (round <= 10) {
+					if (round % 2 !== 0) {
+						var shooter = document.querySelector("#tableTeamHost tbody tr:nth-child("+Math.ceil(round/2)+") td");
+						var isGoal = Math.random() >= 0.5;
+						if (isGoal === true) {
+							shooter.style.color = "green";
+							goalsHostNo++;
+							goalsHost.innerText = goalsHostNo;
+						} else {
+							shooter.style.color = "red";
+						}
+					} else {
+						var shooter = document.querySelector("#tableTeamGuest tbody tr:nth-child("+Math.ceil(round/2)+") td");
+						var isGoal = Math.random() >= 0.5;
+						if (isGoal === true) {
+							shooter.style.color = "green";
+							goalsGuestNo++;
+							goalsGuest.innerText = goalsGuestNo;
+						} else {
+							shooter.style.color = "red";
+						}
+					}
+					round++;
+				} else {
+	 				formGameGoalsHost.value = goalsHostNo;
+					formGameGoalsGuest.value = goalsGuestNo;
+					kickPenalty.disabled = true;
+					finishGame.disabled = false;	
+				} 
+					
+			});
+			
 		});
 	</script>
 </head>
@@ -39,7 +77,7 @@
 	
 	<div class="container">
 	
-		<table class="table">
+		<table id="tableGame" class="table">
 			<thead>
 				<tr>
 					<th class="border text-left" style="width: 200px">${game.host.name}</th>
@@ -52,7 +90,7 @@
 			<tbody>
 				<tr>
 					<td colspan="2">
-						<table class="table">
+						<table id="tableTeamHost" class="table">
 						<c:forEach items="${game.host.persons}" var="person">
 							<tr>
 								<td class="text-left">${person.nameFirst} ${person.nameLast}</td>
@@ -63,7 +101,7 @@
 					<td>
 					</td>
 					<td colspan="2">
-						<table class="table">
+						<table id="tableTeamGuest" class="table">
 						<c:forEach items="${game.guest.persons}" var="person">
 							<tr>
 								<td class="text-right">${person.nameFirst} ${person.nameLast}</td>
@@ -76,7 +114,7 @@
 			<tfoot>
 				<tr>
 					<td colspan="5" class="text-right">
-						<button disabled>kick penalty</button>
+						<button id="kickPenalty">kick penalty</button>
 						<button id="randomScore">random score</button>
 						<form:form method="post" action="/games/play/save" modelAttribute="game">
 							<form:hidden id="formGameId" path="id"/>
