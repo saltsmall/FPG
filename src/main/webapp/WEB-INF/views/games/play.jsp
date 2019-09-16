@@ -35,6 +35,10 @@
 						<c:forEach items="${game.host.persons}" var="person">
 							<tr>
 								<td class="text-left">${person.nameFirst} ${person.nameLast}</td>
+								<td style="font-size: 10px">GK:</td>
+								<td style="font-size: 10px">${person.goalkeeping}</td>
+								<td style="font-size: 10px">SH:</td>
+								<td style="font-size: 10px">${person.shooting}</td>
 							</tr>
 						</c:forEach>
 						</table>
@@ -46,7 +50,11 @@
 						<c:forEach items="${game.guest.persons}" var="person">
 							<tr>
 								<td class="text-right">${person.nameFirst} ${person.nameLast}</td>
-							</tr>
+								<td style="font-size: 10px">GK:</td>
+								<td style="font-size: 10px">${person.goalkeeping}</td>
+								<td style="font-size: 10px">SH:</td>
+								<td style="font-size: 10px">${person.shooting}</td>
+							</tr>							
 						</c:forEach>
 						</table>
 					</td>
@@ -56,7 +64,7 @@
 				<tr>
 					<td colspan="5" class="text-right">
 						<button id="randomPenalty">random penalty</button>
-						<button id="calculatePenalty" disabled>calculate penalty</button>
+						<button id="calculatePenalty">calculate penalty</button>
 						<button id="randomScore">random score/result</button>
 						<form:form method="post" action="/games/play/save" modelAttribute="game">
 							<form:hidden id="formGameId" path="id"/>
