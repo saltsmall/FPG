@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -15,11 +16,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import pl.krzysztofskul.club.ClubConverter;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -90,4 +93,19 @@ public class AppConfig implements WebMvcConfigurer {
         dataSource.setPassword("coderslab");
         return dataSource;
     }
+    
+//    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry handlerRegistry) {
+        handlerRegistry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    }
+    
+//    @Override
+//    public void addFormatters(FormatterRegistry fr) {
+//        fr.addConverter(getClubConverter());
+//    }
+//    @Bean
+//    public ClubConverter getClubConverter() {
+//        return new ClubConverter();
+//    }
+    
 }
