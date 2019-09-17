@@ -31,6 +31,14 @@ public class ClubService {
 	public List<Club> loadAll() {
 		return clubRepository.findAll();
 	}
+
+	public List<Club> loadAllWithPersons() {
+		List<Club> clubs = clubRepository.findAll();
+		for (Club club : clubs) {
+			Hibernate.initialize(club.getPersons());	
+		}
+		return clubs;
+	}
 	
 	public Club loadById(Long id) {
 		return clubRepository.findById(id).get();

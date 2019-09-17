@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import pl.krzysztofskul.club.Club;
@@ -31,6 +32,9 @@ public class Person {
 	
 	@ManyToOne
 	private Club club;
+	
+	@OneToOne(mappedBy="coachFirst")
+	private Club clubCoach;
 	
 	/** constr. */
 	
