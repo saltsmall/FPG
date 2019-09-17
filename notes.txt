@@ -1,9 +1,10 @@
-- classes/entities
+- MODEL (classes/entities)
 	+ person
 		+ parameters
 		- player
 		- coach
 	+ club
+		- controller ........................................... 2019-09-16
 	+ player main parameters
 	- club info
 	+ game
@@ -19,11 +20,20 @@
 		+ clubs
 		+ add persons to the club
 	
-- views
+- VIEWS
 	- menu
 	- home page
 	- player info
 	- club info
+	- games
+		+ all
+		+ play randomized match
+		+ result of the match (commit 5.7: 2019-09-16)
+			+ random score by javascript function
+				+ save to DB
+			+ kick (random) penalty for every player -> save to DB
+			+ kick (shooting/goalkeeping calc.) penalty for every player -> save to DB
 	
-- PL signs
-	- footer
+- OTHERS
+	- PL signs
+		- footer
