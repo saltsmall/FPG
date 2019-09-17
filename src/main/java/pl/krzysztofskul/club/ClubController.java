@@ -42,7 +42,7 @@ public class ClubController {
 	}
 	
 	/*** m. CRUD create */
-	@GetMapping("/new") // TODO
+	@GetMapping("/new")
 	public String newClubForm(
 		Model model
 	) {
@@ -50,8 +50,11 @@ public class ClubController {
 		return "clubs/new";
 	}
 	
-	@PostMapping("/save") // TODO
-	public String save () {
+	@PostMapping("/save") // TODO: validation
+	public String save (
+		@ModelAttribute("club") Club club
+	) {
+		clubeService.save(club);
 		return "clubs/all";
 	}
 	
