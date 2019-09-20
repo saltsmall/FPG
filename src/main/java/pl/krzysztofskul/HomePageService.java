@@ -1,5 +1,7 @@
 package pl.krzysztofskul;
 
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -59,6 +61,12 @@ public class HomePageService {
 
 		Club club001 = new Club();
 		club001.setName("Clubname001");
+		club001.setCity("City001");
+		club001.setCountry("Country001");
+		club001.setShortName("c001");
+		club001.setShortName("Clubname City 001");
+		club001.setCreated(Date.valueOf("1900-01-01"));
+		club001.setBudget(BigDecimal.valueOf(1000000.99));
 		clubService.save(club001);
 		
 		Club club002 = new Club();

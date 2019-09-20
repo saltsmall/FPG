@@ -37,9 +37,9 @@
 					</div>
 				</div>
 				<div class="card-footer text-right">
-					<button class="btn btn-primary disabled" type="submit" disabled="true">
+					<a href="/clubs/${club.id}/details" class="btn btn-primary">
 						DETAILS
-					</button>
+					</a>
 					<button class="btn btn-danger disabled" type="submit" disabled="true">
 						DELETE
 					</button>

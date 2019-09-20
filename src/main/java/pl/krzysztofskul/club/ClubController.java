@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -55,15 +56,44 @@ public class ClubController {
 		@ModelAttribute("club") Club club
 	) {
 		clubeService.save(club);
-		return "clubs/all";
+		return "redirect:/clubs/all";
 	}
 	
 	/*** m. CRUD read */
-	@GetMapping("/all")	// TODO
+	@GetMapping("/all")
 	public String all() {
 		return "clubs/all";
 	}
+	
+	@GetMapping("/{id}/details")
+	public String clubDetails(
+		@PathVariable("id") Long id,
+		Model model
+	) {
+		model.addAttribute("club", clubeService.loadByIdWithPersons(id));
+		return "clubs/details";
+	}
 
+	/*** m. CRUD update */
+	@GetMapping("/{id}/setPlayersPos")	// TODO
+	public String setPlayersPos(
+			@PathVariable("id") Long id,
+			Model model
+	) {
+		Club club = clubeService.loadByIdWithPersons(id);
+		model.addAttribute("club", club);
+		return "clubs/setPlayersPos";
+	}
+	
+	@GetMapping("/{id}/edit")
+	public String edit(
+			@PathVariable("id") Long id,
+			Model model
+	) {
+		model.addAttribute("club", clubeService.loadByIdWithPersons(id));
+		return "clubs/edit";
+	}
+	
 	/*** m. CRUD delete */
 	@GetMapping("/delete") // TODO
 	public String delete () {
