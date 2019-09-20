@@ -22,11 +22,11 @@
 				<div class="row">
 					<div class="col">
 						<form:hidden path="id"/>
-						<h2><form:input path="name"/></h2>
-						<h2><form:input path="city"/></h2>
+						<h6 class="d-inline-block"><form:input path="name"/></h6>
+						<h6 class="d-inline-block"><form:input path="city"/></h6>
 					</div>
 					<div class="col text-right">
-						<h2><form:input class="text-right" path="country"/></h2>
+						<h6 class="d-inline-block"><form:input class="text-right" path="country"/></h6>
 					</div>
 				</div>
 				<div class="row">
