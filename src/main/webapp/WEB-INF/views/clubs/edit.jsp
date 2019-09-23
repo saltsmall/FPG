@@ -16,7 +16,7 @@
 
 	
 	<div class="container">
-	<form:form method="post" action="/clubs/save" modelAttribute="club">
+	<form:form method="post" action="/clubs/update" modelAttribute="club">
 		<div class="card">
 			<div class="card-header">
 				<div class="row">
@@ -86,6 +86,9 @@
 									path="coachFirst"
 								/> --%>
 								<form:select class="float-right" path="coachFirst">
+									<form:option value="${club.coachFirst.id}"
+										label="${club.coachFirst.nameNick}"
+									/>
 									<c:forEach items="${club.persons}" var="person">
 										<form:option value="${person.id}" 
 											label="${person.nameNick} | GK:${person.goalkeeping} SH:${person.shooting}"
@@ -99,6 +102,9 @@
 								GOALKEEPER:
 								<%-- <form:hidden path="persons"/> --%>
 								<form:select class="float-right" path="goalkeeper">
+									<form:option value="${club.goalkeeper.id}"
+										label="${club.goalkeeper.nameNick}"
+									/>
 									<c:forEach items="${club.persons}" var="person">
 										<form:option value="${person.id}" 
 											label="${person.nameNick} | GK:${person.goalkeeping} SH:${person.shooting}"
@@ -106,19 +112,47 @@
 									</c:forEach>
 								</form:select>
 							</div>
-							<%-- <div class="col">
-								<c:forEach 
-									begin="0" end="0"
-									items="${club.persons}"
-									var="person"
-								>
-									${person.nameFirst} ${person.nameLast}
-								</c:forEach>
-							</div> --%>
 						</div>
-						<div class="row mx-2">
+						
+						<div class="row mx-2 border-top">
 							<div class="col">
 								SHOOTERS:
+							</div>
+						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								1. ${club.shooter01}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								2. ${club.shooter02}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								3. ${club.shooter03}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								4. ${club.shooter04}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								5. ${club.shooter05}
+							</div>
+						</div>
+						
+						<div class="row mx-2">
+							<div class="col">
+								ALL TEAM:
 							</div>
 						</div>
 						<c:forEach 

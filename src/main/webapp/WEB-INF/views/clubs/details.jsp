@@ -68,7 +68,7 @@
 						/>
 					</div>
 					<div class="col">
-						<div class="row mx-2 border-bottom">
+						<div class="row mx-2 border-top">
 							<div class="col">
 								COACH:
 							</div>
@@ -76,7 +76,7 @@
 								${club.coachFirst.nameNick}
 							</div>
 						</div>
-						<div class="row mx-2 border-bottom">
+						<div class="row mx-2 border-top">
 							<div class="col">
 								GOALKEEPER:
 							</div>
@@ -84,9 +84,44 @@
 								${club.goalkeeper.nameNick}
 							</div>
 						</div>
-						<div class="row mx-2">
+						<div class="row mx-2 border-top">
 							<div class="col">
 								SHOOTERS:
+							</div>
+						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								1. ${club.shooter01}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								2. ${club.shooter02}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								3. ${club.shooter03}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								4. ${club.shooter04}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								5. ${club.shooter05}
+							</div>
+						</div>
+						<div class="row mx-2 border-top">
+							<div class="col">
+								ALL TEAM:
 							</div>
 						</div>
 						<c:forEach 
