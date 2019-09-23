@@ -79,16 +79,34 @@
 								COACH:
 							</div>
 							<div class="col">
-								<form:input path="coachFirst" value="no coach" disabled="true"/>
-								<!-- ... lorem ipsum -->
+								<%-- <form:input path="coachFirst" value="no coach" disabled="true"/> --%>
+								<%-- <form:select items="${club.persons}"
+									itemLabel="nameNick" 
+									itemValue="id"
+									path="coachFirst"
+								/> --%>
+								<form:select class="float-right" path="coachFirst">
+									<c:forEach items="${club.persons}" var="person">
+										<form:option value="${person.id}" 
+											label="${person.nameNick} | GK:${person.goalkeeping} SH:${person.shooting}"
+										/>								
+									</c:forEach>
+								</form:select>
 							</div>
 						</div>
 						<div class="row mx-2 border-bottom">
 							<div class="col">
 								GOALKEEPER:
 								<%-- <form:hidden path="persons"/> --%>
+								<form:select class="float-right" path="goalkeeper">
+									<c:forEach items="${club.persons}" var="person">
+										<form:option value="${person.id}" 
+											label="${person.nameNick} | GK:${person.goalkeeping} SH:${person.shooting}"
+										/>								
+									</c:forEach>
+								</form:select>
 							</div>
-							<div class="col">
+							<%-- <div class="col">
 								<c:forEach 
 									begin="0" end="0"
 									items="${club.persons}"
@@ -96,7 +114,7 @@
 								>
 									${person.nameFirst} ${person.nameLast}
 								</c:forEach>
-							</div>
+							</div> --%>
 						</div>
 						<div class="row mx-2">
 							<div class="col">

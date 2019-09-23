@@ -75,15 +75,13 @@ public class ClubController {
 	}
 
 	/*** m. CRUD update */
-	@GetMapping("/{id}/setPlayersPos")	// TODO
-	public String setPlayersPos(
-			@PathVariable("id") Long id,
-			Model model
-	) {
-		Club club = clubeService.loadByIdWithPersons(id);
-		model.addAttribute("club", club);
-		return "clubs/setPlayersPos";
-	}
+	/*
+	 * @GetMapping("/{id}/editPersonsList") // TODO public String editPersonsList(
+	 * 
+	 * @PathVariable("id") Long id, Model model ) { Club club =
+	 * clubeService.loadByIdWithPersons(id); model.addAttribute("club", club);
+	 * return "clubs/"+id+"/editPersonsList"; }
+	 */
 	
 	@GetMapping("/{id}/edit")
 	public String edit(

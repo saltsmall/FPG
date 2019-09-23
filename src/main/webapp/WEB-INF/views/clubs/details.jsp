@@ -73,7 +73,7 @@
 								COACH:
 							</div>
 							<div class="col">
-								... lorem ipsum
+								${club.coachFirst.nameNick}
 							</div>
 						</div>
 						<div class="row mx-2 border-bottom">
@@ -81,13 +81,7 @@
 								GOALKEEPER:
 							</div>
 							<div class="col">
-								<c:forEach 
-									begin="0" end="0"
-									items="${club.persons}"
-									var="person"
-								>
-									${person.nameFirst} ${person.nameLast}
-								</c:forEach>
+								${club.goalkeeper.nameNick}
 							</div>
 						</div>
 						<div class="row mx-2">
@@ -111,8 +105,8 @@
 				</div>
 			</div>
 			<div class="card-footer text-right">
-				<a href="/clubs/${club.id}/setPlayersPos" class="btn btn-primary disabled">
-					SET PLAYERS POSITIONS
+				<a href="/clubs/${club.id}/editPersonsList" class="btn btn-primary disabled">
+					EDIT PERSONS LIST
 				</a>
 			</div>
 		</div>
