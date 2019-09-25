@@ -87,7 +87,7 @@
 								/> --%>
 								<form:select class="float-right" path="coachFirst">
 									<form:option value="${club.coachFirst.id}"
-										label="${club.coachFirst.nameNick}"
+										label="${club.coachFirst.nameNick} | GK:${person.goalkeeping} SH:${person.shooting}"
 									/>
 									<c:forEach items="${club.persons}" var="person">
 										<form:option value="${person.id}" 
@@ -122,31 +122,96 @@
 						<div class="row">
 							<div class="col"></div>
 							<div class="col">
-								1. ${club.shooter01}
+								<%-- 1. ${club.shooter01} --%>
+								<form:select class="float-right" path="shooter01">
+									<form:option value="${club.shooter01.id}"
+										label="${club.shooter01.nameNick} | GK:${club.shooter01.goalkeeping} SH:${club.shooter01.shooting}"
+									/>
+									<form:option value="" disabled="true"
+										label="---"
+									/>
+									<c:forEach items="${club.persons}" var="person">
+										<form:option value="${person.id}" 
+											label="${person.nameNick} | GK:${person.goalkeeping} SH:${person.shooting}"
+										/>								
+									</c:forEach>
+								</form:select>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col"></div>
 							<div class="col">
-								2. ${club.shooter02}
+								<%-- 2. ${club.shooter02} --%>
+								<form:select class="float-right" path="shooter02">
+									<form:option value="${club.shooter02.id}"
+										label="${club.shooter02.nameNick} | GK:${club.shooter02.goalkeeping} SH:${club.shooter02.shooting}"
+									/>
+									<form:option value="" disabled="true"
+										label="---"
+									/>
+									<c:forEach items="${club.persons}" var="person">
+										<form:option value="${person.id}" 
+											label="${person.nameNick} | GK:${person.goalkeeping} SH:${person.shooting}"
+										/>								
+									</c:forEach>
+								</form:select>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col"></div>
 							<div class="col">
-								3. ${club.shooter03}
+								<%-- 3. ${club.shooter03} --%>
+								<form:select class="float-right" path="shooter03">
+									<form:option value="${club.shooter03.id}"
+										label="${club.shooter03.nameNick} | GK:${club.shooter03.goalkeeping} SH:${club.shooter03.shooting}"
+									/>
+									<form:option value="" disabled="true"
+										label="---"
+									/>
+									<c:forEach items="${club.persons}" var="person">
+										<form:option value="${person.id}" 
+											label="${person.nameNick} | GK:${person.goalkeeping} SH:${person.shooting}"
+										/>								
+									</c:forEach>
+								</form:select>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col"></div>
 							<div class="col">
-								4. ${club.shooter04}
+								<%-- 4. ${club.shooter04} --%>
+								<form:select class="float-right" path="shooter04">
+									<form:option value="${club.shooter04.id}"
+										label="${club.shooter04.nameNick} | GK:${club.shooter04.goalkeeping} SH:${club.shooter04.shooting}"
+									/>
+									<form:option value="" disabled="true"
+										label="---"
+									/>
+									<c:forEach items="${club.persons}" var="person">
+										<form:option value="${person.id}" 
+											label="${person.nameNick} | GK:${person.goalkeeping} SH:${person.shooting}"
+										/>								
+									</c:forEach>
+								</form:select>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col"></div>
 							<div class="col">
-								5. ${club.shooter05}
+								<%-- 5. ${club.shooter05} --%>
+								<form:select class="float-right" path="shooter05">
+									<form:option value="${club.shooter05.id}"
+										label="${club.shooter05.nameNick} | GK:${club.shooter05.goalkeeping} SH:${club.shooter05.shooting}"
+									/>
+									<form:option value="" disabled="true"
+										label="---"
+									/>
+									<c:forEach items="${club.persons}" var="person">
+										<form:option value="${person.id}" 
+											label="${person.nameNick} | GK:${person.goalkeeping} SH:${person.shooting}"
+										/>								
+									</c:forEach>
+								</form:select>
 							</div>
 						</div>
 						

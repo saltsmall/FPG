@@ -92,31 +92,31 @@
 						<div class="row">
 							<div class="col"></div>
 							<div class="col">
-								1. ${club.shooter01}
+								1. ${club.shooter01.nameNick}
 							</div>
 						</div>
 						<div class="row">
 							<div class="col"></div>
 							<div class="col">
-								2. ${club.shooter02}
+								2. ${club.shooter02.nameNick}
 							</div>
 						</div>
 						<div class="row">
 							<div class="col"></div>
 							<div class="col">
-								3. ${club.shooter03}
+								3. ${club.shooter03.nameNick}
 							</div>
 						</div>
 						<div class="row">
 							<div class="col"></div>
 							<div class="col">
-								4. ${club.shooter04}
+								4. ${club.shooter04.nameNick}
 							</div>
 						</div>
 						<div class="row">
 							<div class="col"></div>
 							<div class="col">
-								5. ${club.shooter05}
+								5. ${club.shooter05.nameNick}
 							</div>
 						</div>
 						<div class="row mx-2 border-top">
