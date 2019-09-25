@@ -125,7 +125,6 @@
 							</div>
 						</div>
 						<c:forEach 
-							begin="1" end="5"
 							items="${club.persons}"
 							var="person"
 						>
