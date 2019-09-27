@@ -68,35 +68,63 @@
 						/>
 					</div>
 					<div class="col">
-						<div class="row mx-2 border-bottom">
+						<div class="row mx-2 border-top">
 							<div class="col">
 								COACH:
 							</div>
 							<div class="col">
-								... lorem ipsum
+								${club.coachFirst.nameNick}
 							</div>
 						</div>
-						<div class="row mx-2 border-bottom">
+						<div class="row mx-2 border-top">
 							<div class="col">
 								GOALKEEPER:
 							</div>
 							<div class="col">
-								<c:forEach 
-									begin="0" end="0"
-									items="${club.persons}"
-									var="person"
-								>
-									${person.nameFirst} ${person.nameLast}
-								</c:forEach>
+								${club.goalkeeper.nameNick}
 							</div>
 						</div>
-						<div class="row mx-2">
+						<div class="row mx-2 border-top">
 							<div class="col">
 								SHOOTERS:
 							</div>
 						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								1. ${club.shooter01.nameNick}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								2. ${club.shooter02.nameNick}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								3. ${club.shooter03.nameNick}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								4. ${club.shooter04.nameNick}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								5. ${club.shooter05.nameNick}
+							</div>
+						</div>
+						<div class="row mx-2 border-top">
+							<div class="col">
+								ALL TEAM:
+							</div>
+						</div>
 						<c:forEach 
-							begin="1" end="5"
 							items="${club.persons}"
 							var="person"
 						>
@@ -111,8 +139,8 @@
 				</div>
 			</div>
 			<div class="card-footer text-right">
-				<a href="/clubs/${club.id}/setPlayersPos" class="btn btn-primary disabled">
-					SET PLAYERS POSITIONS
+				<a href="/clubs/${club.id}/editPersonsList" class="btn btn-primary disabled">
+					EDIT PERSONS LIST
 				</a>
 			</div>
 		</div>

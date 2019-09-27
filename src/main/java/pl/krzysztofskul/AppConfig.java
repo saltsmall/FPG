@@ -23,6 +23,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import pl.krzysztofskul.club.ClubConverter;
+import pl.krzysztofskul.person.PersonConverter;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -98,11 +99,16 @@ public class AppConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry handlerRegistry) {
         handlerRegistry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
+
+//  @Override
+  public void addFormatters(FormatterRegistry fr) {
+      fr.addConverter(getPersonConverter());
+  }
+  @Bean
+  public PersonConverter getPersonConverter() {
+      return new PersonConverter();
+  }
     
-//    @Override
-//    public void addFormatters(FormatterRegistry fr) {
-//        fr.addConverter(getClubConverter());
-//    }
 //    @Bean
 //    public ClubConverter getClubConverter() {
 //        return new ClubConverter();

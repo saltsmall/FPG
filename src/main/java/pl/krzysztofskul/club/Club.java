@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import pl.krzysztofskul.game.Game;
@@ -42,12 +43,18 @@ public class Club {
 	@ManyToOne
 	private Person coachFirst;
 	
-//	private Person goalkeeper;
-//	private Person shooter01;
-//	private Person shooter02;
-//	private Person shooter03;
-//	private Person shooter04;
-//	private Person shooter05;
+	@OneToOne
+	private Person goalkeeper;
+	@OneToOne
+	private Person shooter01;
+	@OneToOne
+	private Person shooter02;
+	@OneToOne
+	private Person shooter03;
+	@OneToOne
+	private Person shooter04;
+	@OneToOne
+	private Person shooter05;
 	
 	@OneToMany(mappedBy = "host")
 	private List<Game> gamesAsHost = new ArrayList<Game>();
@@ -121,6 +128,54 @@ public class Club {
 	public void setCoachFirst(Person coachFirst) {
 		this.coachFirst = coachFirst;
 	}
+	public Person getGoalkeeper() {
+		return goalkeeper;
+	}
+
+	public void setGoalkeeper(Person goalkeeper) {
+		this.goalkeeper = goalkeeper;
+	}
+
+	public Person getShooter01() {
+		return shooter01;
+	}
+
+	public void setShooter01(Person shooter01) {
+		this.shooter01 = shooter01;
+	}
+
+	public Person getShooter02() {
+		return shooter02;
+	}
+
+	public void setShooter02(Person shooter02) {
+		this.shooter02 = shooter02;
+	}
+
+	public Person getShooter03() {
+		return shooter03;
+	}
+
+	public void setShooter03(Person shooter03) {
+		this.shooter03 = shooter03;
+	}
+
+	public Person getShooter04() {
+		return shooter04;
+	}
+
+	public void setShooter04(Person shooter04) {
+		this.shooter04 = shooter04;
+	}
+
+	public Person getShooter05() {
+		return shooter05;
+	}
+
+	public void setShooter05(Person shooter05) {
+		this.shooter05 = shooter05;
+	}
+
 	public List<Game> getGamesAsHost() {
 		return gamesAsHost;
 	}
