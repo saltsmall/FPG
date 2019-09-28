@@ -1,10 +1,13 @@
 package pl.krzysztofskul.game;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import pl.krzysztofskul.club.Club;
@@ -17,6 +20,8 @@ public class Game {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	private LocalDateTime date;
 	
 	@ManyToOne
 	private Club host;
@@ -48,6 +53,14 @@ public class Game {
 		this.id = id;
 	}
 	
+	public LocalDateTime getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
+
 	public Club getHost() {
 		return host;
 	}
@@ -81,6 +94,11 @@ public class Game {
 	
 	public void goalForGuest() {
 		this.goalsGuest++;
+	}
+	
+	@PrePersist
+	public void prePersist() {
+		setDate(LocalDateTime.now());
 	}
 
 }

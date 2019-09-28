@@ -1,5 +1,6 @@
 package pl.krzysztofskul.game;
 
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class GameController {
 	/** g and s */
 	
 	/** m. */
+	@ModelAttribute("allClubs")
+	public List<Club> getAllClubs() {
+		return clubService.loadAll();
+	}
+	
 	@GetMapping("/all")
 	public String gamesAll(Model model) {	
 		model.addAttribute("gamesAll", gameService.loadAll());
@@ -47,6 +53,23 @@ public class GameController {
 		Random random = new Random();
 		Long idHost = Integer.toUnsignedLong(random.nextInt(clubsNum)+1);
 		Long idGuest = Integer.toUnsignedLong(random.nextInt(clubsNum)+1);
+		return "redirect:/games/play/"+idHost+"/"+idGuest;
+	}
+	
+	@GetMapping("/arrange")
+	public String arrange(
+			Model model
+	) {
+		Game game = new Game();
+		model.addAttribute("game", game);
+		return "games/arrange";
+	}
+	@PostMapping("/arrange")
+	public String arrange(
+			@ModelAttribute("game") Game game
+	) {
+		Long idHost = game.getHost().getId();
+		Long idGuest = game.getGuest().getId();
 		return "redirect:/games/play/"+idHost+"/"+idGuest;
 	}
 	

@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import pl.krzysztofskul.club.logo.LogoFileService;
 
 @Controller
 @RequestMapping("/clubs")
@@ -20,13 +24,18 @@ public class ClubController {
 	 *  params. 
 	 **/
 	private ClubService clubeService;
+	private LogoFileService logoFileService;
 	
 	/** 
 	 * constr. 
 	 **/
 	@Autowired
-	public ClubController(ClubService clubeService) {
+	public ClubController(
+			ClubService clubeService,
+			LogoFileService logoFileService
+	) {
 		this.clubeService = clubeService;
+		this.logoFileService = logoFileService;
 	}
 	
 	/**
@@ -92,10 +101,35 @@ public class ClubController {
 		return "clubs/edit";
 	}
 	
-	/*** m. CRUD delete */
-	@GetMapping("/delete") // TODO
-	public String delete () {
-		return "clubs/delete";
+	@PostMapping("/update") // TODO: validation
+	public String update (
+		@ModelAttribute("club") Club club
+	) {
+		clubeService.save(club);
+		return "redirect:/clubs/"+club.getId()+"/details";
 	}
+	
+	@GetMapping("/{id}/setLogo")
+	public String setLogo(
+		@PathVariable("id") Long id,
+		Model model
+	) {
+		model.addAttribute("club", clubeService.loadById(id));
+		return "clubs/setLogo";
+	}
+	@PostMapping("/setLogo")
+	public String setLogo(
+			@RequestParam("file") MultipartFile file,
+			Model model,
+			@ModelAttribute("club") Club club
+	) {
+		logoFileService.saveLogoFile(file);
+		Club clubEdited = clubeService.loadById(club.getId());
+		clubEdited.setLogo(logoFileService.findById(Long.valueOf("1")));
+		clubeService.save(clubEdited);
+		return "clubs/all";
+	}
+	
+	/*** m. CRUD delete */
 	
 }
