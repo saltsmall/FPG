@@ -24,22 +24,38 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-sm">
-							Host:
-							<%-- <form:select path="host.id" items="${allClubs}" itemValue="id"/> --%>
-							<form:select path="host.id">
-								<c:forEach items="${allClubs}" var="club">
-									<form:option label="${club.name} ${club.city}" value="${club.id}"/>
-								</c:forEach>
-							</form:select>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+    								<label class="input-group-text">HOST:</label>
+    							</div>
+								<%-- <form:select path="host.id" items="${allClubs}" itemValue="id"/> --%>
+								<form:select path="host.id">
+									<c:forEach items="${allClubs}" var="club">
+										<form:option 
+											class="custom-select"
+											label="${club.name} ${club.city}" 
+											value="${club.id}"
+										/>
+									</c:forEach>
+								</form:select>
+							</div>
 						</div>
 						<div class="col-sm">
-							Guest:
-							<%-- <form:select path="guest.id" items="${allClubs}" itemValue="id"/> --%>
-							<form:select path="guest.id">
-								<c:forEach items="${allClubs}" var="club">
-									<form:option label="${club.name} ${club.city}" value="${club.id}"/>
-								</c:forEach>
-							</form:select>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+    								<label class="input-group-text">GUEST:</label>
+    							</div>
+								<%-- <form:select path="guest.id" items="${allClubs}" itemValue="id"/> --%>
+								<form:select path="guest.id">
+									<c:forEach items="${allClubs}" var="club">
+										<form:option 
+											class="custom-select"
+											label="${club.name} ${club.city}" 
+											value="${club.id}"
+										/>
+									</c:forEach>
+								</form:select>
+							</div>
 						</div>
 					</div>
 				</div>
