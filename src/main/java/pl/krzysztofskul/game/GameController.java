@@ -66,11 +66,20 @@ public class GameController {
 	}
 	@PostMapping("/arrange")
 	public String arrange(
-			@ModelAttribute("game") Game game
+			@ModelAttribute("game") Game game,
+			Model model
 	) {
 		Long idHost = game.getHost().getId();
 		Long idGuest = game.getGuest().getId();
-		return "redirect:/games/play/"+idHost+"/"+idGuest;
+		if (idHost == idGuest) {
+			String error = "error";
+			model.addAttribute("error", error);
+			return "redirect:/games/arrange";
+		} else {
+			String error = null;
+			model.addAttribute("error", error);
+			return "redirect:/games/play/"+idHost+"/"+idGuest;
+		}
 	}
 	
 	@GetMapping("/play/{idHost}/{idGuest}") 

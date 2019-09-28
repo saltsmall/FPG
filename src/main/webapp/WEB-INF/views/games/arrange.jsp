@@ -61,6 +61,9 @@
 				</div>
 				
 				<div class="card-footer text-right">
+					<div class="text-danger">
+						${empty param.error ? "" : "Choose different clubs!"}
+					</div>
 					<button type="submit" class="btn btn-success">ARRANGE</button>
 				</div>
 			
