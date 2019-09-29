@@ -78,6 +78,11 @@
 				</tr>
 			</tfoot>
 		</table>
+		
+		<div id="comment" class="row">
+			<div id="comment-host" class="col-sm text-center font-weight-bold">..</div>
+			<div id="comment-guest" class="col-sm text-center font-weight-bold">..</div>
+		</div>
 	
 	</div>
 	

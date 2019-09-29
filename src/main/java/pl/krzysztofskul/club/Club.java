@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import pl.krzysztofskul.club.logo.LogoFile;
 import pl.krzysztofskul.game.Game;
 import pl.krzysztofskul.person.Person;
 
@@ -32,6 +33,9 @@ public class Club {
 	
 	private String shortName;
 	private String fullName;
+	
+	@OneToOne
+	private LogoFile logo;
 	
 	private Date created;
 	
@@ -104,6 +108,14 @@ public class Club {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
+	public LogoFile getLogo() {
+		return logo;
+	}
+
+	public void setLogo(LogoFile logo) {
+		this.logo = logo;
+	}
+
 	public Date getCreated() {
 		return created;
 	}

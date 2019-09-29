@@ -1,5 +1,6 @@
 package pl.krzysztofskul.person;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -27,11 +28,14 @@ public class Person {
 	
 	private LocalDate dateOfBirth;
 	
+	private int coaching;
 	private int goalkeeping;
 	private int shooting;
 	
 	@ManyToOne
 	private Club club;
+	
+	private BigDecimal price;
 	
 	@OneToOne(mappedBy="coachFirst")
 	private Club clubCoach;
@@ -79,6 +83,14 @@ public class Person {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public int getCoaching() {
+		return coaching;
+	}
+
+	public void setCoaching(int coaching) {
+		this.coaching = coaching;
+	}
+
 	public int getGoalkeeping() {
 		return goalkeeping;
 	}
@@ -101,6 +113,22 @@ public class Person {
 
 	public void setClub(Club club) {
 		this.club = club;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public Club getClubCoach() {
+		return clubCoach;
+	}
+
+	public void setClubCoach(Club clubCoach) {
+		this.clubCoach = clubCoach;
 	}
 	
 	/** methods */

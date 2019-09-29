@@ -10,15 +10,17 @@
 </head>
 
 <body>
-	<nav class="nav">
-        <a class="nav-link" href="<c:url value="/startDB"/>">START DB</a>
-        <a class="nav-link" href="<c:url value="/home"/>">HOME</a>
-        <a class="nav-link" href="<c:url value="/games/all"/>">GAMES</a>
-        <a class="nav-link" href="<c:url value="/games/randomplay"/>">PLAY RANDOM MATCH</a>
-        <a class="nav-link" href="<c:url value="/clubs/all"/>">CLUBS</a>
-        <a class="nav-link" href="<c:url value="/clubs/new"/>">NEW CLUB</a>
-        <a class="nav-link disabled" href="<c:url value="/persons/all"/>">PERSONS</a>
-    </nav>
+	<div class="container">
+		<nav class="nav">
+	        <a class="nav-link" href="<c:url value="/startDB"/>">START DB</a>
+	        <a class="nav-link" href="<c:url value="/home"/>">HOME</a>
+	        <a class="nav-link" href="<c:url value="/games/all"/>">GAMES</a>
+	        <%-- <a class="nav-link" href="<c:url value="/games/randomplay"/>">PLAY RANDOM MATCH</a> --%>
+	        <a class="nav-link" href="<c:url value="/clubs/all"/>">CLUBS</a>
+	        <a class="nav-link" href="<c:url value="/clubs/new"/>">NEW CLUB</a>
+	        <a class="nav-link" href="<c:url value="/persons/forHire"/>">PERSONS</a>
+	    </nav>
+    </div>
 </body>
 
 </html>
