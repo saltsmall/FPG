@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	var randomScore = document.getElementById("randomScore");
 	var finishGame = document.getElementById("finishGame");
 	
+	var comment = document.getElementById("comment");
+	
 	randomScore.addEventListener("click", function() {
 		goalsHost.style.color = "blue";
 		var goalsHostNo = Math.floor(Math.random()*10)
@@ -64,6 +66,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 	calculatePenalty.addEventListener("click", function() {
 		if (round <= 10) {
+			
+			var div = document.createElement("div");
+			var divHost = comment.firstElementChild;
+			var divGuest = comment.lastElementChild;
+			
 			if (round % 2 !== 0) {
 				
 				var shooter = document.querySelector("#tableTeamHost tbody tr:nth-child("+Math.ceil(round/2)+") td");
@@ -73,17 +80,35 @@ document.addEventListener("DOMContentLoaded", function() {
 				var goalkeeper = document.querySelector("#tableTeamGuest tbody tr:nth-child("+Math.ceil(round/2)+") td");
 				var goalkeeperGK = parseInt(document.querySelector("#tableTeamGuest tbody tr:nth-child("+Math.ceil(round/2)+") td:nth-child(3)").innerHTML);
 				goalkeeperGK = goalkeeperGK + (1000 - goalkeeperGK)*Math.random()+0.01;
-				
-				alert("SH: "+shooterSH+" | "+" GK: "+goalkeeperGK);
-				
+								
 				var isGoal = shooterSH >= goalkeeperGK;
 				if (isGoal === true) {
 					shooter.style.color = "green";
 					goalsHostNo++;
 					goalsHost.innerText = goalsHostNo;
+					setTimeout(function() {
+						comment.style.background = "green";
+						divHost.innerText = "GOOAAAL!";
+					}, 0);
+					setTimeout(function() {
+						comment.style.background = "white";
+						divHost.innerText = "..";
+					}, 1000);
+					
 				} else {
 					shooter.style.color = "red";
+					setTimeout(function() {
+						comment.style.background = "red";
+						divHost.innerText = "MISSED!";
+					}, 0);
+					setTimeout(function() {
+						comment.style.background = "white";
+						divHost.innerText = "..";
+					}, 1000);
 				}
+				
+//				penaltyWindow(shooter, shooterSH, goalkeeper, goalkeeperGK);
+				
 			} else {
 				var shooter = document.querySelector("#tableTeamGuest tbody tr:nth-child("+Math.ceil(round/2)+") td");
 				var shooterSH = parseInt(document.querySelector("#tableTeamGuest tbody tr:nth-child("+Math.ceil(round/2)+") td:nth-child(5)").innerHTML);
@@ -93,16 +118,33 @@ document.addEventListener("DOMContentLoaded", function() {
 				var goalkeeperGK = parseInt(document.querySelector("#tableTeamHost tbody tr:nth-child("+Math.ceil(round/2)+") td:nth-child(3)").innerHTML);
 				goalkeeperGK = goalkeeperGK + (1000 - goalkeeperGK)*Math.random()+0.01;
 				
-				alert("SH: "+shooterSH+" | "+" GK: "+goalkeeperGK);
-
 				var isGoal = shooterSH >= goalkeeperGK;
 				if (isGoal === true) {
 					shooter.style.color = "green";
 					goalsGuestNo++;
 					goalsGuest.innerText = goalsGuestNo;
+					setTimeout(function() {
+						comment.style.background = "green";
+						divGuest.innerText = "GOOAAAL!";
+					}, 0);
+					setTimeout(function() {
+						comment.style.background = "white";
+						divGuest.innerText = "..";
+					}, 1000);
 				} else {
 					shooter.style.color = "red";
+					setTimeout(function() {
+						comment.style.background = "red";
+						divGuest.innerText = "MISSED!";
+					}, 0);
+					setTimeout(function() {
+						comment.style.background = "white";
+						divGuest.innerText = "..";
+					}, 1000);
 				}
+
+//				penaltyWindow(shooter, shooterSH, goalkeeper, goalkeeperGK);
+
 			}
 			round++;
 		} else {
@@ -112,4 +154,14 @@ document.addEventListener("DOMContentLoaded", function() {
 			finishGame.disabled = false;	
 		}
 	});
+	
+	function penaltyWindow(shooter, shooterSH, goalkeeper, goalkeeperGK) {
+		alert(	
+				"Shooter: "+shooter+"\n"+
+				"SH: "+shooterSH.toFixed()+"\n\n"+
+				"Goalkeeper: "+goalkeeper+"\n"+
+				"GK: "+goalkeeperGK.toFixed()
+		)
+	}
+	
 });
