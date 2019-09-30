@@ -7,8 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
-	@Query(value = "SELECT * FROM Persons WHERE club_id IS NULL", 
-			nativeQuery = true)
-	List<Person> findAllForHire();
+//	@Query(value = "SELECT * FROM Persons", 
+//			nativeQuery = true)
+//	List<Person> findAllForHire();
+	
+	List<Person> findByIsHired(boolean isHired);
 	
 }

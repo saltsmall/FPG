@@ -5,10 +5,13 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -41,7 +44,13 @@ public class Club {
 	
 	private BigDecimal budget;
 	
-	@OneToMany(mappedBy = "club")
+//	@OneToMany(mappedBy = "club")
+	@OneToMany
+    @JoinTable(
+            name="club_persons",
+            joinColumns = @JoinColumn(name="club_id"),
+            inverseJoinColumns = @JoinColumn(name="person_id")
+        )
 	private List<Person> persons = new ArrayList<Person>();
 	
 	@ManyToOne
@@ -203,7 +212,12 @@ public class Club {
 	
 	/** m. */
 	public void addPerson(Person person) {
-		this.getPersons().add(person);
+//		List<Person> persons = this.getPersons();
+//		persons.add(person);
+//		this.setPersons(persons);
+//		this.budget = getBudget().subtract(BigDecimal.valueOf(100));
+		this.persons.add(person);
+		this.budget = this.getBudget().subtract(person.getPrice());
 	}
 	public void removePerson(Person person) {
 		this.getPersons().remove(person);

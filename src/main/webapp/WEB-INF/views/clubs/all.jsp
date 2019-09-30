@@ -15,17 +15,16 @@
 
 	<div class="container">
 	
-		
-		
 		<c:forEach items="${clubsAll}" var="club">
 			<div class="card d-inline-block mb-5 mx-1" style="width: 500px">
 				<div class="card-header">
-					<h2>${club.name}</h2>
+					<h2>${club.name} ${club.city}</h2>
 				</div>
 				<div class="card-body">
 					<div class="row">
 						<div style="col">
 							<img src="/resources/img/logo-Club-001.png" width="200px" height="200px"/>
+							<%-- <img src="${club.logo.id}" width="200px" height="200px"/> --%>
 						</div>
 						<div style="col">
 							<ul>

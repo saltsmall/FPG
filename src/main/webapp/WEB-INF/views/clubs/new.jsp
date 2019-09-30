@@ -14,7 +14,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<div class="container">
-		<form:form action="/clubs/save" method="post" modelAttribute="club">
+		<form:form action="/clubs/save" method="post" modelAttribute="club" enctype="multipart/form-data">
 			<div class="card">
 				<div class="card-header">
 					NEW CLUB CREATOR
@@ -79,8 +79,8 @@
 							</div>
 						</div>
 				</div>
-				<div class="card-footer">
-					<button type="submit">SAVE >></button>
+				<div class="card-footer text-right">
+					<button class="btn btn-primary" type="submit">SAVE >></button>
 				</div>
 			</div>
 		</form:form>
