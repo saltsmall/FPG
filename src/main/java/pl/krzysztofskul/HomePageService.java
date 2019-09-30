@@ -55,6 +55,21 @@ public class HomePageService {
 			personService.save(person);
 		}
 		
+		for (int i=100; i<=110; i++) {
+			Person person = new Person();
+			/* main info */
+			person.setNameFirst("Firstname"+i);
+			person.setNameLast("Lastname"+i);
+			person.setNameNick(person.getNameFirst()+" "+person.getNameLast());
+			person.setPrice(BigDecimal.valueOf(100));
+			/* player parameters */
+			Random random = new Random();
+			person.setGoalkeeping(random.nextInt(998)+1);
+			person.setShooting(random.nextInt(998)+1);
+			/* save to db */
+			personService.save(person);
+		}
+		
 	}
 	
 	public void createClubs() {
@@ -90,7 +105,7 @@ public class HomePageService {
 		for (Club club : clubs) {
 			for (int i = 1; i<=11; i++) {
 				Person person = personService.loadById(Long.valueOf(j));
-				person.setClub(club);
+//				person.setClub(club);
 				personService.save(person);
 				j++;
 			}

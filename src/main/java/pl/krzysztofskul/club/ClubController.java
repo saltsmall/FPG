@@ -1,5 +1,6 @@
 package pl.krzysztofskul.club;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -141,6 +142,7 @@ public class ClubController {
 	) {
 		model.addAttribute("club", clubService.loadById(id));
 		model.addAttribute("personsForHire", personService.loadAllForHire());
+//		model.addAttribute("personsForHire", personService.loadAll());
 		return "clubs/hireNewPersons";
 	}
 	@PostMapping("/hireNewPersons")
@@ -151,13 +153,16 @@ public class ClubController {
 		Club club = clubService.loadByIdWithPersons(clubId);
 		String[] personsForHire = request.getParameterValues("personsForHire");
 		for (String s : personsForHire) {
-//			club.addPerson(personService.loadById(Long.parseLong(s)));
-//			clubService.save(club);
 			Person person = personService.loadById(Long.parseLong(s));
-			person.setClub(club);
+			person.setHired(true);
 			personService.save(person);
+			club.addPerson(person);
+			
+//			Person person = personService.loadById(Long.parseLong(s));
+//			person.setClub(club);
+//			personService.save(person);
 		}
-		
+		clubService.save(club);
 		return "redirect:/clubs/"+clubId+"/details";
 	}
 	

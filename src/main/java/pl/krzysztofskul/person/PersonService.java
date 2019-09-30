@@ -32,7 +32,8 @@ public class PersonService {
 	}
 	
 	public List<Person> loadAllForHire() {
-		return personRepository.findAllForHire();
+//		return personRepository.findAllForHire();
+		return personRepository.findByIsHired(false);
 	}
 	
 	public Person loadById(Long id) {

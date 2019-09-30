@@ -24,8 +24,8 @@
 				</div>
 				<div class="card-body">
 					<c:forEach items="${personsForHire}" var="person">
-					
-						<div class="input-group mb-3">
+						
+						<%-- <div class="input-group mb-3">
 						  <div class="input-group-prepend">
 						    <div class="input-group-text">
 						      <input type="checkbox" name="personsForHire" value="${person.id}"/>${person.nameNick}
@@ -33,7 +33,22 @@
 						    </div>
 						  </div>
 						  <!-- <input type="text" class="form-control" aria-label="Text input with checkbox"> -->
-						</div>								
+						</div> --%>	
+						
+						<div class="row mt-1 mb-3 pt-3 border-top">
+							<div class="col-sm-1">
+								<input type="checkbox" name="personsForHire" value="${person.id}" style="width: 25px; height: 25px"/>
+							</div>
+							<div class="col-sm">
+								<h4>${person.nameNick}</h4>
+								<h6>GK (goalkeeping): ${person.goalkeeping}</h6>
+								<h6>SH (shooting): ${person.shooting}</h6>
+								<h5>Price: ${person.price} $</h5>
+							</div>
+							<!-- <div class="col-sm">
+								<img src="/resources/img/logo-Person-000.png" width="100px" height="100px" alt="PERSON PHOTO"/>
+							</div> -->
+						</div>
 						
 					</c:forEach>
 				</div>

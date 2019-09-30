@@ -3,10 +3,13 @@ package pl.krzysztofskul.person;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -33,7 +36,14 @@ public class Person {
 	private int shooting;
 	
 	@ManyToOne
+	@JoinTable(
+			name="club_persons", 
+			joinColumns = @JoinColumn(name="person_id"),
+			inverseJoinColumns = @JoinColumn(name="club_id")
+	)	
 	private Club club;
+	
+	private boolean isHired;
 	
 	private BigDecimal price;
 	
@@ -113,6 +123,14 @@ public class Person {
 
 	public void setClub(Club club) {
 		this.club = club;
+	}
+
+	public boolean isHired() {
+		return isHired;
+	}
+
+	public void setHired(boolean isHired) {
+		this.isHired = isHired;
 	}
 
 	public BigDecimal getPrice() {

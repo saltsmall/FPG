@@ -139,8 +139,8 @@
 				</div>
 			</div>
 			<div class="card-footer text-right">
-				<a href="/clubs/${club.id}/editPersonsList" class="btn btn-primary disabled">
-					EDIT PERSONS LIST
+				<a href="/clubs/${club.id}/hireNewPersons" class="btn btn-primary">
+					HIRE NEW PERSON
 				</a>
 			</div>
 		</div>
