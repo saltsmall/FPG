@@ -1,15 +1,19 @@
 package pl.krzysztofskul.club;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,10 +71,16 @@ public class ClubController {
 		return "clubs/new";
 	}
 	
-	@PostMapping("/save") // TODO: validation
+	@PostMapping("/save")
 	public String save (
-		@ModelAttribute("club") Club club
+//		@ModelAttribute("created") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date,
+//		@ModelAttribute("created") @DateTimeFormat(pattern = "yyyy-mm-dd") Date date,
+		@ModelAttribute("club") @Valid Club club, 
+		BindingResult result
 	) {
+		if(result.hasErrors()) {
+			return "/clubs/new";
+		}
 		clubService.save(club);
 		return "redirect:/clubs/all";
 	}

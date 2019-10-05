@@ -32,12 +32,17 @@
 					<div class="col text-right">
 						<h5>
 							Date of creation:
-							<fmt:setLocale value="en_US" scope="session"/>
+							<%--
+								<fmt:setLocale value="en_US" scope="session"/>
+							 --%>
+							 <%--
 							<fmt:formatDate
 								type="date"
 								pattern="yyyy MMM dd"
 								value="${club.created}"
 							/>
+							 --%>
+							 ${club.created}
 						</h5>
 						<h5>
 							Budget:
