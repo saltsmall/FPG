@@ -2,6 +2,7 @@ package pl.krzysztofskul.club;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import pl.krzysztofskul.club.logo.LogoFile;
 import pl.krzysztofskul.game.Game;
@@ -30,18 +39,30 @@ public class Club {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank
 	private String name;
+	
+	@NotBlank
 	private String city;
+	
+	@NotBlank
 	private String country;
 	
+	@NotBlank
 	private String shortName;
+	
+	@NotBlank
 	private String fullName;
 	
 	@OneToOne
 	private LogoFile logo;
 	
-	private Date created;
+	@PastOrPresent
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate created;
 	
+	@NotNull
+	@DecimalMin(value = "0", inclusive = true)
 	private BigDecimal budget;
 	
 //	@OneToMany(mappedBy = "club")
@@ -125,10 +146,10 @@ public class Club {
 		this.logo = logo;
 	}
 
-	public Date getCreated() {
+	public LocalDate getCreated() {
 		return created;
 	}
-	public void setCreated(Date created) {
+	public void setCreated(LocalDate created) {
 		this.created = created;
 	}
 	public BigDecimal getBudget() {

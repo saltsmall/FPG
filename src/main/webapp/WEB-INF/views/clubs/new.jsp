@@ -29,6 +29,9 @@
 							<div class="col">
 								<form:input path="name"/>
 							</div>
+							<div class="col text-danger font-italic">
+								<form:errors path="name"/>
+							</div>
 						</div>
 						<div class="row">
 							<div class="col">
@@ -36,6 +39,9 @@
 							</div>
 							<div class="col">
 								<form:input path="city"/>
+							</div>
+							<div class="col text-danger font-italic">
+								<form:errors path="city"/>
 							</div>
 						</div>
 						<div class="row">
@@ -45,6 +51,9 @@
 							<div class="col">
 								<form:input path="country"/>
 							</div>
+							<div class="col text-danger font-italic">
+								<form:errors path="country"/>
+							</div>
 						</div>
 						<div class="row">
 							<div class="col">
@@ -52,6 +61,9 @@
 							</div>
 							<div class="col">
 								<form:input path="shortName"/>
+							</div>
+							<div class="col text-danger font-italic">
+								<form:errors path="shortName"/>
 							</div>
 						</div>
 						<div class="row">
@@ -61,6 +73,9 @@
 							<div class="col">
 								<form:input path="fullName"/>
 							</div>
+							<div class="col text-danger font-italic">
+								<form:errors path="fullName"/>
+							</div>
 						</div>
 						<div class="row">
 							<div class="col">
@@ -69,13 +84,19 @@
 							<div class="col">
 								<form:input type="date" path="created"/>
 							</div>
+							<div class="col text-danger font-italic">
+								<form:errors path="created"/>
+							</div>
 						</div>
 						<div class="row">
 							<div class="col">
 								BUDGET:
 							</div>
 							<div class="col">
-								<form:input type="number" step="0.01" min="0" path="created"/>
+								<form:input type="number" step="0.01" min="0" path="budget"/>
+							</div>
+							<div class="col text-danger font-italic">
+								<form:errors path="budget"/>
 							</div>
 						</div>
 				</div>
