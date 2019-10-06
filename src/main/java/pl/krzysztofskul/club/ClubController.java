@@ -147,7 +147,7 @@ public class ClubController {
 //		Club clubEdited = clubService.loadById(club.getId());
 //		clubEdited.setLogo(logoFileService.findById(Long.valueOf(club.getLogo().getId())));
 //		clubService.save(clubEdited);
-		return "redirect:/clubs/all";
+		return "redirect:/clubs/"+club.getId()+"/details";
 	}
 	@RequestMapping(value = "/logo/{clubId}")
 	@ResponseBody

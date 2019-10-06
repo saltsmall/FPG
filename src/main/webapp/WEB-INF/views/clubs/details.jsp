@@ -63,11 +63,25 @@
 			</div>
 			<div class="card-body">
 				<div class="row">
-					<div class="col border-right" style="max-width: 250px">
-						<img src="/resources/img/logo-Club-001.png"  
+					<div class="col border-right text-center" style="max-width: 250px">
+						<!-- <img src="/resources/img/logo-Club-001.png"  
 							alt="CLUB LOGO"
 							width="200px" height="200px"
-						/>
+						/> -->
+						<c:if test="${club.logo eq null}">
+							<img src="/resources/img/football_club_logo_000.jpg" width="200px" height="200px"/>
+						</c:if>
+						<c:if test="${club.logo ne null}">
+							<img src="/clubs/logo/${club.id}.jpg" width="200px" height="200px" alt="LOGO FROM DB"/>
+						</c:if>
+						<div class="text-center mt-3">
+							<a 
+								class="btn btn-primary"
+								href="/clubs/${club.id}/setLogo"
+							>
+								SET/CHANGE LOGO
+							</a>
+						</div>
 					</div>
 					<div class="col">
 						<div class="row mx-2 border-top">
