@@ -2,6 +2,7 @@ package pl.krzysztofskul;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 
@@ -44,9 +45,10 @@ public class HomePageService {
 		for (int i=1; i<=44; i++) {
 			Person person = new Person();
 			/* main info */
-			person.setNameFirst("Firstname00"+i);
-			person.setNameLast("Lastname00"+i);
+			person.setNameFirst("Firstname0"+i);
+			person.setNameLast("Lastname0"+i);
 			person.setNameNick(person.getNameFirst()+" "+person.getNameLast());
+			person.setPrice(BigDecimal.valueOf(100));
 			/* player parameters */
 			Random random = new Random();
 			person.setGoalkeeping(random.nextInt(998)+1);
@@ -73,44 +75,59 @@ public class HomePageService {
 	}
 	
 	public void createClubs() {
-
-		Club club001 = new Club();
-		club001.setName("Clubname001");
-		club001.setCity("City001");
-		club001.setCountry("Country001");
-		club001.setShortName("c001");
-		club001.setShortName("Clubname City 001");
-		club001.setCreated(Date.valueOf("1900-01-01"));
-		club001.setBudget(BigDecimal.valueOf(1000000.99));
-		clubService.save(club001);
 		
-		Club club002 = new Club();
-		club002.setName("Clubname002");
-		clubService.save(club002);
+		for (int i = 1; i <= 6; i++) {
+			Club club = new Club();
+			club.setName("Clubname00"+i);
+			club.setCity("Cityname");
+			club.setCountry("PL");
+			club.setShortName("c00"+i);
+			club.setFullName("Clubname"+i+" Cityname");
+	//		club.setCreated(Date.valueOf("1900-01-01"));
+			club.setCreated(LocalDate.of(new Random().nextInt(19)+1901, new Random().nextInt(11)+1, new Random().nextInt(27)+1));
+			club.setBudget(BigDecimal.valueOf(1000000.99));
+			clubService.save(club);
+		}
 		
-		Club club003 = new Club();
-		club003.setName("Clubname003");
-		clubService.save(club003);
-		
-		Club club004 = new Club();
-		club004.setName("Clubname004");
-		clubService.save(club004);
+//		Club club002 = new Club();
+//		club002.setName("Clubname002");
+//		clubService.save(club002);
+//		
+//		Club club003 = new Club();
+//		club003.setName("Clubname003");
+//		clubService.save(club003);
+//		
+//		Club club004 = new Club();
+//		club004.setName("Clubname004");
+//		clubService.save(club004);
 		
 	}
 	
 	public void addPersonsToClub() {
-		List<Club> clubs = clubService.loadAll();
+//		List<Club> clubs = clubService.loadAll();
+//		
+//		int j = 1;
+//		for (Club club : clubs) {
+//			for (int i = 1; i<=11; i++) {
+//				Person person = personService.loadById(Long.valueOf(j));
+////				person.setClub(club);
+//				personService.save(person);
+//				j++;
+//			}
+//		}
 		
-		int j = 1;
-		for (Club club : clubs) {
-			for (int i = 1; i<=11; i++) {
+		int counter = 0;
+		for (int i = 1; i <= 2; i++) {
+			Club club = clubService.loadByIdWithPersons(Long.parseLong(String.valueOf(i)));
+			for (int j = 1+counter; j <= 11+counter; j++) {
 				Person person = personService.loadById(Long.valueOf(j));
-//				person.setClub(club);
+				person.setHired(true);
 				personService.save(person);
-				j++;
-			}
-		}
-		
+				club.addPerson(person);	
+			}	
+			counter += 11;
+			clubService.save(club);
+		}		
 	}
 	
 	public void createGames() {

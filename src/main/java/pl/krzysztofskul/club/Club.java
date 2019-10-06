@@ -54,7 +54,7 @@ public class Club {
 	@NotBlank
 	private String fullName;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private LogoFile logo;
 	
 	@PastOrPresent

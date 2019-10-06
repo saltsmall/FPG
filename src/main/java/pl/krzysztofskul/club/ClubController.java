@@ -1,5 +1,7 @@
 package pl.krzysztofskul.club;
 
+import java.awt.Image;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
@@ -20,8 +22,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import pl.krzysztofskul.club.logo.LogoFile;
 import pl.krzysztofskul.club.logo.LogoFileService;
 import pl.krzysztofskul.person.Person;
 import pl.krzysztofskul.person.PersonService;
@@ -73,8 +77,6 @@ public class ClubController {
 	
 	@PostMapping("/save")
 	public String save (
-//		@ModelAttribute("created") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date,
-//		@ModelAttribute("created") @DateTimeFormat(pattern = "yyyy-mm-dd") Date date,
 		@ModelAttribute("club") @Valid Club club, 
 		BindingResult result
 	) {
@@ -124,12 +126,12 @@ public class ClubController {
 		return "redirect:/clubs/"+club.getId()+"/details";
 	}
 	
-	@GetMapping("/{id}/setLogo")
+	@GetMapping("/{clubId}/setLogo")
 	public String setLogo(
-		@PathVariable("id") Long id,
+		@PathVariable("clubId") Long clubId,
 		Model model
 	) {
-		model.addAttribute("club", clubService.loadById(id));
+		model.addAttribute("club", clubService.loadById(clubId));
 		return "clubs/setLogo";
 	}
 	@PostMapping("/setLogo")
@@ -138,11 +140,20 @@ public class ClubController {
 			Model model,
 			@ModelAttribute("club") Club club
 	) {
-		logoFileService.saveLogoFile(file);
 		Club clubEdited = clubService.loadById(club.getId());
-		clubEdited.setLogo(logoFileService.findById(Long.valueOf("1")));
+		clubEdited.setLogo(logoFileService.saveLogoFile(file));
 		clubService.save(clubEdited);
-		return "clubs/all";
+//		logoFileService.saveLogoFile(file);
+//		Club clubEdited = clubService.loadById(club.getId());
+//		clubEdited.setLogo(logoFileService.findById(Long.valueOf(club.getLogo().getId())));
+//		clubService.save(clubEdited);
+		return "redirect:/clubs/"+club.getId()+"/details";
+	}
+	@RequestMapping(value = "/logo/{clubId}")
+	@ResponseBody
+	public byte[] logo(@PathVariable Long clubId)  {
+//	  return logoFileService.findById(clubId).getData();
+	  return logoFileService.getFileByClub(clubService.loadById(clubId)).getData();
 	}
 
 	@GetMapping("/{id}/hireNewPersons")
