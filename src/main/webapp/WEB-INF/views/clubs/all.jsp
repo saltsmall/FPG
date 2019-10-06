@@ -23,8 +23,12 @@
 				<div class="card-body">
 					<div class="row">
 						<div style="col">
-							<img src="/resources/img/logo-Club-001.png" width="200px" height="200px"/>
-							<%-- <img src="${club.logo.id}" width="200px" height="200px"/> --%>
+							<c:if test="${club.logo eq null}">
+								<img src="/resources/img/football_club_logo_000.jpg" width="200px" height="200px"/>
+							</c:if>
+							<c:if test="${club.logo ne null}">
+								<img src="/clubs/logo/${club.id}.jpg" width="200px" height="200px" alt="LOGO FROM DB"/>
+							</c:if>
 						</div>
 						<div style="col">
 							<ul>
